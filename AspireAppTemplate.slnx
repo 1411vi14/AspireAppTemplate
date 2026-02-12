@@ -1,0 +1,15 @@
+<Solution>
+	<Folder Name="/Solution Items/">
+		<File Path=".editorconfig"/>
+		<File Path="compose.yaml"/>
+		<File Path="Directory.Build.props"/>
+		<File Path="Directory.Packages.props"/>
+	</Folder>
+	
+	<Project Path="AspireAppTemplate.AppHost\AspireAppTemplate.AppHost.csproj"/>
+	<Project Path="AspireAppTemplate.ServiceDefaults/AspireAppTemplate.ServiceDefaults.csproj"/>
+	<Project Path="Web.Api.Application.Tests/Web.Api.Application.Tests.csproj"/>
+	<Project Path="Web.Api.Application/Web.Api.Application.csproj"/>
+	<Project Path="Web.Api.Domain/Web.Api.Domain.csproj"/>
+	<Project Path="Web.Api\Web.Api.csproj"/>
+</Solution>
