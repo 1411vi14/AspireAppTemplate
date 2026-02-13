@@ -9,5 +9,10 @@
 		<!--<TreatWarningsAsErrors>true</TreatWarningsAsErrors>-->
 		<!--<CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>-->
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<TestingPlatformDotnetTestSupport>false</TestingPlatformDotnetTestSupport>
+		<EnableTestingPlatform>true</EnableTestingPlatform>
+	</PropertyGroup>
+	<PropertyGroup Condition="$([System.String]::Copy('$(MSBuildProjectName)').EndsWith('.Tests'))">
+		<EnableTestingPlatform>true</EnableTestingPlatform>
 	</PropertyGroup>
 </Project>

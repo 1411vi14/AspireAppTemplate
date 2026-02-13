@@ -4,16 +4,19 @@
 		<File Path="compose.yaml" />
 		<File Path="Directory.Build.props" />
 		<File Path="Directory.Packages.props" />
+		<File Path="global.json"/>
 	</Folder>
 	
 	<Folder Name="/Solution Items/.github/workflows/">
 		<File Path=".github/workflows/dotnet.yml" />
 	</Folder>
 	
-	<Project Path="AspireAppTemplate.AppHost\AspireAppTemplate.AppHost.csproj" />
+	<Project Path="AspireAppTemplate.AppHost/AspireAppTemplate.AppHost.csproj"/>
 	<Project Path="AspireAppTemplate.ServiceDefaults/AspireAppTemplate.ServiceDefaults.csproj" />
 	<Project Path="Web.Api.Application.Tests/Web.Api.Application.Tests.csproj" />
 	<Project Path="Web.Api.Application/Web.Api.Application.csproj" />
+	<Project Path="Web.Api.Common/Web.Api.Common.csproj"/>
 	<Project Path="Web.Api.Domain/Web.Api.Domain.csproj" />
-	<Project Path="Web.Api\Web.Api.csproj" />
+	<Project Path="Web.Api/Web.Api.csproj"/>
+	<Project Path="TUnit.Tests/TUnit.Tests.csproj"/>
 </Solution>

@@ -1,6 +1,11 @@
 using AspireAppTemplate.ServiceDefaults;
 
+using Web.Api.Application.Options;
+using Web.Api.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddOptions<BaseOptions>(BaseOptions.Section);
 
 builder.AddServiceDefaults();
 
@@ -15,34 +20,36 @@ app.MapDefaultEndpoints();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
-    app.UseDeveloperExceptionPage();
+	app.MapOpenApi();
+	app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpsRedirection();
 
 var summaries = new[]
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+	"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
+#pragma warning disable CA5394
 app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast");
+	{
+		WeatherForecast[] forecast = Enumerable.Range(1, 5).Select(index =>
+				new WeatherForecast
+				(
+					DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+					Random.Shared.Next(-20, 55),
+					summaries[Random.Shared.Next(summaries.Length)]
+				))
+			.ToArray();
+		return forecast;
+	})
+	.WithName("GetWeatherForecast");
+#pragma warning restore CA5394
 
 await app.RunAsync(app.Lifetime.ApplicationStopping);
 
 sealed record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+	public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
