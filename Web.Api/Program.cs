@@ -1,5 +1,8 @@
 using AspireAppTemplate.ServiceDefaults;
 
+using Keycloak.AuthServices.Authentication;
+using Keycloak.AuthServices.Authorization;
+
 using Scalar.AspNetCore;
 
 using Web.Api.Application.Options;
@@ -14,7 +17,17 @@ builder.AddServiceDefaults();
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-
+builder.Services.AddKeycloakWebApiAuthentication(builder.Configuration);
+builder.Services.AddAuthorization(options =>
+	{
+		options.AddPolicy("AdminAndUser", builder =>
+		{
+			builder
+				.RequireRealmRoles("User") // Realm role is fetched from token
+				.RequireResourceRoles("Admin"); // Resource/Client role is fetched from token
+		});
+	})
+	.AddKeycloakAuthorization(builder.Configuration);
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
@@ -24,14 +37,16 @@ app.MapDefaultEndpoints();
 app.MapOpenApi();
 app.MapScalarApiReference(options =>
 {
-	options.Title = "Brickcity Story Management API";
+	// options.Title = "Brickcity Story Management API";
 	options.ShowSidebar = true;
 });
 app.UseDeveloperExceptionPage();
 #endif
 
-
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 var summaries = new[]
 {
@@ -53,6 +68,10 @@ app.MapGet("/weatherforecast", () =>
 	})
 	.WithName("GetWeatherForecast");
 #pragma warning restore CA5394
+
+
+app.MapGet("/hello", () => "[]")
+	.RequireAuthorization("AdminAndUser");
 
 await app.RunAsync(app.Lifetime.ApplicationStopping);
 

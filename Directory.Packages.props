@@ -7,6 +7,11 @@
 		<PackageVersion Include="Aspire.Hosting" Version="13.1.1"/>
 		<PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="13.1.1"/>
 		<PackageVersion Include="Aspire.Hosting.Redis" Version="13.1.1"/>
+		<PackageVersion Include="Codehard.Aspire.Hosting.Keycloak" Version="1.0.1"/>
+		<PackageVersion Include="Keycloak.AuthServices.Aspire.Hosting" Version="0.2.0"/>
+		<PackageVersion Include="Keycloak.AuthServices.Authentication" Version="2.8.0"/>
+		<PackageVersion Include="Keycloak.AuthServices.Authorization" Version="2.8.0"/>
+		<PackageVersion Include="Keycloak.AuthServices.OpenTelemetry" Version="1.0.0"/>
 		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.3"/>
 		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="10.0.3"/>
 		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.3.0"/>

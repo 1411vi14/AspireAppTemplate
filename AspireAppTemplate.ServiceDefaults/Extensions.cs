@@ -73,7 +73,8 @@ public static class ApplicationBuilderExtensions
 					// Uncomment the following line to enable gRPC instrumentation (requires the OpenTelemetry.Instrumentation.GrpcNetClient package)
 					//.AddGrpcClientInstrumentation()
 					.AddHttpClientInstrumentation();
-			});
+			})
+			.WithLogging();
 
 		builder.AddOpenTelemetryExporters();
 
@@ -87,7 +88,8 @@ public static class ApplicationBuilderExtensions
 
 		if (useOtlpExporter)
 		{
-			builder.Services.AddOpenTelemetry().UseOtlpExporter();
+			builder.Services.AddOpenTelemetry()
+				.UseOtlpExporter();
 		}
 
 		// Uncomment the following lines to enable the Azure Monitor exporter (requires the Azure.Monitor.OpenTelemetry.AspNetCore package)
