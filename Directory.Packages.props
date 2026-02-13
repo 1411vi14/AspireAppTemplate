@@ -38,9 +38,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$([System.String]::Copy('$(MSBuildProjectName)').EndsWith('.Tests'))">
-		<PackageReference Include="coverlet.collector"/>
 		<PackageReference Include="FluentAssertions"/>
-		<PackageReference Include="Microsoft.NET.Test.Sdk"/>
 		<PackageReference Include="Moq"/>
 		<PackageReference Include="TUnit"/>
 		<PackageReference Include="TUnit.AspNetCore"/>
