@@ -1,5 +1,7 @@
 using AspireAppTemplate.ServiceDefaults;
 
+using Scalar.AspNetCore;
+
 using Web.Api.Application.Options;
 using Web.Api.Extensions;
 
@@ -18,11 +20,16 @@ var app = builder.Build();
 app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+#if DEBUG
+app.MapOpenApi();
+app.MapScalarApiReference(options =>
 {
-	app.MapOpenApi();
-	app.UseDeveloperExceptionPage();
-}
+	options.Title = "Brickcity Story Management API";
+	options.ShowSidebar = true;
+});
+app.UseDeveloperExceptionPage();
+#endif
+
 
 app.UseHttpsRedirection();
 
